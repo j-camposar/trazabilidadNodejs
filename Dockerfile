@@ -1,11 +1,9 @@
-FROM node:20-alpine
+FROM node:20-alpine AS build
 
-WORKDIR /
+WORKDIR /app
 
 COPY package*.json ./
-RUN npm install --only=production
+RUN npm ci --omit=dev
 
 COPY . .
-
-EXPOSE 3001
-CMD ["node", "index.js"]
+RUN npm run build
