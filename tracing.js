@@ -14,6 +14,9 @@ const sdk = new NodeSDK({
   instrumentations: [getNodeAutoInstrumentations()],
 });
 
-sdk.start()
-  .then(() => console.log('✅ OpenTelemetry iniciado y exportando trazas a Tempo'))
-  .catch(err => console.error('❌ Error al iniciar OpenTelemetry', err));
+try {
+  sdk.start();
+  console.log('✅ OpenTelemetry iniciado y exportando trazas a Tempo');
+} catch (err) {
+  console.error('❌ Error al iniciar OpenTelemetry', err);
+}
