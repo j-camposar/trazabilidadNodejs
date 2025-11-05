@@ -3,8 +3,13 @@ const express = require('express');
 const cors = require('cors');
 const { User } = require('./models');
 const app = express();
+const corsOptions = {
+  origin: 'https://5q8m79-3000.csb.app', // dominio de frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type'],
+};
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.post('/register', async (req, res) => {
